@@ -8,9 +8,9 @@ const server = createServer(app);
 server.listen(config.PORT);
 
 server.on('listening', () => {
-  logger.info(`Server listening at port ${config.PORT}`);
+	logger.info(`Server listening at port ${config.PORT}`);
 });
 
 server.on('error', err => {
-  logger.error(err);
+	logger.error(err);
 });

@@ -1,207 +1,207 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "This is the hackerbay backend interview api. Provide three basic functionalities : Authentication, JSON patching and image thumb generation",
-    "version": "1.0.0",
-    "title": "Hackerbay Interview",
-    "contact": {
-      "email": "ezechinnaemeka@gmail.com"
-    }
-  },
-  "host": "localhost:3000",
-  "basePath": "/api",
-  "tags": [
-    {
-      "name": "User",
-      "description": "User Authentication"
-    },
-    {
-      "name": "Json Patching",
-      "description": "Patch JSON object"
-    },
-    {
-      "name": "Image Thumbnail Generation",
-      "description": "Generates an image thumbnail"
-    }
-  ],
-  "schemes": ["http"],
-  "paths": {
-    "/user/login": {
-      "post": {
-        "tags": ["User"],
-        "summary": "Logs user into the system",
-        "description": "",
-        "consumes": ["application/x-www-form-urlencoded", "application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/LoginResponse"
-            }
-          },
-          "400": {
-            "description": "Invalid username/password supplied"
-          }
-        }
-      }
-    },
-    "/patch-json": {
-      "post": {
-        "description": "Applies a json patch to the json object, and return the resulting json object",
-        "tags": ["Json Patching"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Patch"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": "Access Token"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/components/responses/JsonPatch"
-            }
-          },
-          "400": {
-            "description": "Invalid username/password supplied"
-          },
-          "401": {
-            "description": "Access token is missing or invalid"
-          }
-        }
-      }
-    },
-    "/create-thumbnail": {
-      "post": {
-        "description": "Downloads an image, resize to 50x50 pixels, and return the resulting thumbnail",
-        "tags": ["Image Thumbnail Generation"],
-        "produces": ["image/jpeg"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/createThumbnailSchema"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": "Access Token"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Image resizing was successful"
-          },
-          "400": {
-            "description": "ImageUrl in request body was invalid"
-          },
-          "401": {
-            "description": "Access token is missing or invalid"
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "LoginResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string"
-        },
-        "data": {
-          "type": "object",
-          "properties": {
-            "token": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "createThumbnailSchema": {
-      "type": "object",
-      "properties": {
-        "imageUrl": {
-          "type": "string"
-        }
-      }
-    },
-    "Patch": {
-      "type": "object",
-      "properties": {
-        "json": {
-          "type": "object"
-        },
-        "patch": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "responses": {
-      "JsonPatch": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "patched": {
-                "type": "object"
-              }
-            }
-          }
-        }
-      },
-      "UnAuthorized": {
-        "description": "Access Token is missing or invalid"
-      }
-    }
-  }
+	"swagger": "2.0",
+	"info": {
+		"description": "This is the hackerbay backend interview api. Provide three basic functionalities : Authentication, JSON patching and image thumb generation",
+		"version": "1.0.0",
+		"title": "Hackerbay Interview",
+		"contact": {
+			"email": "ezechinnaemeka@gmail.com"
+		}
+	},
+	"host": "localhost:3000",
+	"basePath": "/api",
+	"tags": [
+		{
+			"name": "User",
+			"description": "User Authentication"
+		},
+		{
+			"name": "Json Patching",
+			"description": "Patch JSON object"
+		},
+		{
+			"name": "Image Thumbnail Generation",
+			"description": "Generates an image thumbnail"
+		}
+	],
+	"schemes": ["http"],
+	"paths": {
+		"/user/login": {
+			"post": {
+				"tags": ["User"],
+				"summary": "Logs user into the system",
+				"description": "",
+				"consumes": ["application/x-www-form-urlencoded", "application/json"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "successful operation",
+						"schema": {
+							"$ref": "#/definitions/LoginResponse"
+						}
+					},
+					"400": {
+						"description": "Invalid username/password supplied"
+					}
+				}
+			}
+		},
+		"/patch-json": {
+			"post": {
+				"description": "Applies a json patch to the json object, and return the resulting json object",
+				"tags": ["Json Patching"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Patch"
+						}
+					},
+					{
+						"name": "Authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"description": "Access Token"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "successful operation",
+						"schema": {
+							"$ref": "#/components/responses/JsonPatch"
+						}
+					},
+					"400": {
+						"description": "Invalid username/password supplied"
+					},
+					"401": {
+						"description": "Access token is missing or invalid"
+					}
+				}
+			}
+		},
+		"/create-thumbnail": {
+			"post": {
+				"description": "Downloads an image, resize to 50x50 pixels, and return the resulting thumbnail",
+				"tags": ["Image Thumbnail Generation"],
+				"produces": ["image/jpeg"],
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/createThumbnailSchema"
+						}
+					},
+					{
+						"name": "Authorization",
+						"in": "header",
+						"required": true,
+						"type": "string",
+						"description": "Access Token"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Image resizing was successful"
+					},
+					"400": {
+						"description": "ImageUrl in request body was invalid"
+					},
+					"401": {
+						"description": "Access token is missing or invalid"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"User": {
+			"type": "object",
+			"properties": {
+				"username": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			}
+		},
+		"LoginResponse": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "string"
+				},
+				"data": {
+					"type": "object",
+					"properties": {
+						"token": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"createThumbnailSchema": {
+			"type": "object",
+			"properties": {
+				"imageUrl": {
+					"type": "string"
+				}
+			}
+		},
+		"Patch": {
+			"type": "object",
+			"properties": {
+				"json": {
+					"type": "object"
+				},
+				"patch": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"responses": {
+			"JsonPatch": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"type": "object",
+						"properties": {
+							"patched": {
+								"type": "object"
+							}
+						}
+					}
+				}
+			},
+			"UnAuthorized": {
+				"description": "Access Token is missing or invalid"
+			}
+		}
+	}
 }
