@@ -12,6 +12,10 @@ router.post(
   Controller.patchJSON
 );
 
-router.post('/resize-image', Validator.validateImage, Controller.resizeImage);
+router.post(
+  '/create-thumbnail',
+  Validator.validateImage,
+  Controller.createThumbnail
+);
 
 module.exports = router;

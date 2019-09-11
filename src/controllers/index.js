@@ -42,7 +42,7 @@ function patchJSON(req, res, next) {
   }
 }
 
-async function resizeImage(req, res, next) {
+async function createThumbnail(req, res, next) {
   try {
     const dest = path.resolve('public', 'images');
     await mkdirp(dest);
@@ -65,5 +65,5 @@ async function resizeImage(req, res, next) {
 module.exports = {
   login,
   patchJSON,
-  resizeImage
+  createThumbnail
 };
