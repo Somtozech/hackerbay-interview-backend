@@ -6,17 +6,17 @@ const { authenticate } = require('../middleware/auth');
 router.post('/user/login', Validator.validateLogin, Controller.login);
 
 router.post(
-  '/patch-json',
-  authenticate,
-  Validator.validateJsonPatch,
-  Controller.patchJSON
+	'/patch-json',
+	authenticate,
+	Validator.validateJsonPatch,
+	Controller.patchJSON
 );
 
 router.post(
-  '/create-thumbnail',
-  authenticate,
-  Validator.validateImage,
-  Controller.createThumbnail
+	'/create-thumbnail',
+	authenticate,
+	Validator.validateImage,
+	Controller.createThumbnail
 );
 
 module.exports = router;
