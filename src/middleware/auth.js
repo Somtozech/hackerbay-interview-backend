@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
+/**
+ * Checks if a token is present in the authorization header
+ * returns token if present else returns null
+ * @param {Request} req
+ */
 function getTokenInQueryOrHeader(req) {
 	let token = null;
 	if (
@@ -15,7 +20,13 @@ function getTokenInQueryOrHeader(req) {
 	return token ? token : null;
 }
 
-exports.authenticate = (req, res, next) => {
+/**
+ * Checks if token in header is from a valid user
+ * @param {Request} req - Client Request
+ * @param {Response} res - Server Response
+ * @param {Middleware} next
+ */
+exports.checkAuthorization = (req, res, next) => {
 	try {
 		// get token
 		const token = getTokenInQueryOrHeader(req);

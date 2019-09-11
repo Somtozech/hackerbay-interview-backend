@@ -1,20 +1,20 @@
 const router = require('express').Router();
 const Validator = require('../middleware/validation');
 const Controller = require('../controllers');
-const { authenticate } = require('../middleware/auth');
+const { checkAuthorization } = require('../middleware/auth');
 
 router.post('/user/login', Validator.validateLogin, Controller.login);
 
 router.post(
 	'/patch-json',
-	authenticate,
+	checkAuthorization,
 	Validator.validateJsonPatch,
 	Controller.patchJSON
 );
 
 router.post(
 	'/create-thumbnail',
-	authenticate,
+	checkAuthorization,
 	Validator.validateImage,
 	Controller.createThumbnail
 );

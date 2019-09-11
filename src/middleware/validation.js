@@ -1,6 +1,7 @@
 const { loginSchema, jsonpatchSchema, imageurlSchema } = require('./schema');
 const path = require('path');
 
+// validates req body to make sure it contains valid login fields
 exports.validateLogin = (req, res, next) => {
 	const body = req.body || {};
 	const { error } = loginSchema.validate(body);
@@ -18,6 +19,7 @@ exports.validateLogin = (req, res, next) => {
 	next();
 };
 
+//validate req body to make sure it contains required fields
 exports.validateJsonPatch = (req, res, next) => {
 	const body = req.body || {};
 	const { error } = jsonpatchSchema.validate(body);
@@ -34,6 +36,10 @@ exports.validateJsonPatch = (req, res, next) => {
 	next();
 };
 
+/**
+ * Validates req body to make sure it contains the imageUrl Field
+ * Checks if the imageUrl field contains a valid image url
+ */
 exports.validateImage = (req, res, next) => {
 	const body = req.body || {};
 	const { error } = imageurlSchema.validate(body);

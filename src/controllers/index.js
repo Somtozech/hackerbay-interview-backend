@@ -6,8 +6,8 @@ const mkdirp = require('mkdirp');
 
 /**
  * Creates a token for a valid user
- * @param {Object} req - Client Request
- * @param {Object} res - Server Response
+ * @param {Request} req - Client Request
+ * @param {Response} res - Server Response
  * @param {Middleware} next
  */
 function login(req, res, next) {
@@ -24,6 +24,12 @@ function login(req, res, next) {
 	}
 }
 
+/**
+ * Accepts a json and a json patch. Then returns the patched json in the response
+ * @param {Request} req - Client Request
+ * @param {Response} res - Server Response
+ * @param {Middleware} next
+ */
 function patchJSON(req, res, next) {
 	try {
 		const { json, patch } = req.body;
@@ -40,6 +46,13 @@ function patchJSON(req, res, next) {
 	}
 }
 
+/**
+ * Downloads an image to the `public` folder in the root folder of the project
+ * Resizes the image to 50x50 and returns it in the response
+ * @param {Request} req - Client Request
+ * @param {Response} res - Server Response
+ * @param {Middleware} next
+ */
 async function createThumbnail(req, res, next) {
 	try {
 		const dest = path.resolve('public', 'images');
