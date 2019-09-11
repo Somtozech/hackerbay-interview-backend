@@ -14,6 +14,7 @@ router.post(
 
 router.post(
   '/create-thumbnail',
+  authenticate,
   Validator.validateImage,
   Controller.createThumbnail
 );
