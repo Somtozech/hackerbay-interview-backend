@@ -29,7 +29,6 @@ function patchJSON(req, res, next) {
     const { json, patch } = req.body;
     const patched = jsonpatch.applyPatch(JSON.parse(json), JSON.parse(patch))
       .newDocument;
-    console.log(patched);
     return res.status(200).send({
       message: 'Json was patched',
       data: {
@@ -37,7 +36,6 @@ function patchJSON(req, res, next) {
       }
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }

@@ -25,7 +25,6 @@ exports.authenticate = (req, res, next) => {
       });
     }
     const decoded = jwt.verify(token, config.JWT_KEY);
-    console.log(decoded);
     req.user = decoded;
     next();
   } catch (error) {

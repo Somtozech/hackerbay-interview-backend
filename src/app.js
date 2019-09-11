@@ -7,12 +7,18 @@ const appRoutes = require('./routes');
 
 const app = express();
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger.json');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
 
 app.use('/api', appRoutes(Router));
+
+// Api docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res, next) => {
   res.status(404).send({
