@@ -5,6 +5,11 @@ const app = require('./src/app');
 const config = require('./src/config');
 const server = createServer(app);
 
+process.on('unhandledRejection', ex => {
+	//winston logger automatically handles thrown exception
+	throw ex;
+});
+
 server.listen(config.PORT);
 
 server.on('listening', () => {

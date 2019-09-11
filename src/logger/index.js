@@ -4,8 +4,8 @@ const logger = createLogger({
 	level: 'info',
 	format: format.combine(
 		format.prettyPrint(),
-		format.json(),
-		format.colorize()
+		format.colorize(),
+		format.simple()
 	),
 	transports: [
 		// - Write all logs error (and below) to `error.log`.
@@ -15,7 +15,12 @@ const logger = createLogger({
 			handleExceptions: true
 		})
 	],
-	exceptionHandlers: [new transports.File({ filename: 'exceptions.log' })]
+	exceptionHandlers: [
+		new transports.File({ filename: 'exceptions.log' }),
+		new transports.Console({
+			format: format.combine(format.prettyPrint(), format.colorize())
+		})
+	]
 });
 //
 // If we're not in production then log to the `console` with the format:
