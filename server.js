@@ -1,24 +1,16 @@
+const { createServer } = require('http');
+const logger = require('./src/logger');
 
-# dependencies
-/node_modules
+const app = require('./src/app');
+const config = require('./src/config');
+const server = createServer(app);
 
-# testing
-/coverage
+server.listen(config.PORT);
 
-.vscode
+server.on('listening', () => {
+  logger.info(`Server listening at port ${config.PORT}`);
+});
 
-# production
-/build
-
-test
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+server.on('error', err => {
+  logger.error(err);
+});
