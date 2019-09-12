@@ -16,6 +16,18 @@ exports.validateLogin = (req, res, next) => {
 		});
 	}
 
+	const { json, patch } = req.body;
+
+	if (!json || !patch || typeof json !== 'object' || !Array.isArray(patch)) {
+		return res.status(400).send({
+			message: 'Bad Request',
+			error: {
+				name: 'Invalid Field',
+				message: 'Either json or patch field is invalid'
+			}
+		});
+	}
+
 	next();
 };
 

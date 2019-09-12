@@ -14,8 +14,8 @@ exports.loginSchema = joi.object().keys({
 
 // schema for validating json patch payload
 exports.jsonpatchSchema = joi.object().keys({
-	json: [joi.object().required(), joi.array().required()],
-	patch: [joi.object().required(), joi.array().required()]
+	json: joi.object().required(),
+	patch: joi.array().required()
 });
 
 // schema for validating image generation thumbnail payload
