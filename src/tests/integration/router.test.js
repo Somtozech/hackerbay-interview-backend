@@ -28,7 +28,8 @@ describe('Authentication', () => {
 					expect(res.body.data).to.have.property('token');
 					expect(res.body.data.token).to.be.a('string');
 					done();
-				});
+				})
+				.catch(done);
 		});
 
 		it('should return 400 if username is invalid', done => {
