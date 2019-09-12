@@ -183,3 +183,9 @@ Open [http://localhost:3000/docs](http://localhost:3000) to view docs
 ```
 npm test
 ```
+
+### Run Code coverage
+
+```
+npm run coverage
+```
