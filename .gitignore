@@ -4,6 +4,7 @@
 
 # testing
 /coverage
+.nyc_output
 
 .vscode
 
@@ -30,3 +31,6 @@ yarn-error.log*
 *-lock.json
 
 public/
+
+
+

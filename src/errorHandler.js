@@ -6,6 +6,8 @@ const logger = require('./logger');
  * @param {Response} res
  * @param {Middleware} next
  */
+
+//eslint-disable-next-line
 function errorHandler(error, req, res, next) {
 	logger.error(error);
 	const status = error.status || 500;

@@ -40,7 +40,7 @@ exports.checkAuthorization = (req, res, next) => {
 		next();
 	} catch (error) {
 		if (error.name === 'JsonWebTokenError') {
-			return res.status(401).send({
+			return res.status(400).send({
 				message: 'Invalid Token. Access Denied',
 				data: null,
 				error: error

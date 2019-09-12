@@ -20,7 +20,8 @@ app.use('/api', appRoutes(Router));
 // Api docs
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use((req, res) => {
+//eslint-disable-next-line
+app.use((req, res, next) => {
 	res.status(404).send({
 		message: 'Route Not Found'
 	});

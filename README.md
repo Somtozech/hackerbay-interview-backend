@@ -31,30 +31,84 @@ Open [http://localhost:3000](http://localhost:3000) to access server
 
 ## Usage
 
-### Authentication (public)
+### Authentication
 
-To authenticate user you have to provide a username and password field in the request body. On successful authentication a token is returned in the response body. This token should be used for further request. Token must be placed in the Authorization header ie
+---
+
+Returns a token on successful login
+
+- **URL**
+
+  /api/user/login
+
+- **Method**
+
+  `POST`
+
+- **Data Params**
+
+  **Required:**
+
+  `username=[string]`
+
+  `password=[string]`
+
+- **Success Response**
+
+  - **Code:** 200 <br/>
+    **Content:** `{ message: 'User login successful', data: { token } }`
+
+- **Error Response**
+
+  - **Code:** 400 <br/>
+    **Content:** `message: 'Bad Request', error: { name: error.name, message: error.message } }`
+
+- **Sample Call**
 
 ```
-//headers
-{
-  ...
-  Authorization : "Bearer `${token}`"
-  ...
-}
+curl -X POST "http://localhost:3000/api/user/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"username\", \"password\": \"password\"}"
 ```
-
-or in the query `` http://localhost:port/privateRoute?token=`${token}` ``
-To Authenticate , send a **POST** request to `localhost:3000/api/user/login`.
 
 ### JSON patching (private)
 
-Applies a json patch to the json object, and return the resulting json object. The request body must contain a json and patch field both representing the json object and the json patch.
-To perform a json patch , send a **POST** request to `http://localhost:3000/api/patch-json`
+---
 
-**NB:** The JSON patching route is a private route and requires a token to be present in the authorization header or query
+Takes a json objects and a patch and returns the patched json object. The request body must contain a json and patch field both representing the json object and the json patch.
+
+- **URL**
+
+  /api/patch-json
+
+- **Method**
+
+  `POST`
+
+- **Data Params**
+
+  **Required:**
+
+  `json=[Object]`
+
+  `patch=[Array]`
+
+- **Success Response**
+
+  - **Code:** 200 <br/>
+    **Content:** `{ message: 'Json was patched', data: { patched } }`
+
+- **Error Response**
+
+  - **Code:** 400 <br/>
+    **Content:** `message: 'Bad Request', error: { name: error.name, message: error.message } }`
+
+  OR
+
+  - **Code:** 401 <br/>
+    **Content:** `{ message: 'Authentication Failed. Access Denied' }`
 
 ### Image Thumbnail Generation (private)
+
+---
 
 Downloads an image, resize to 50x50 pixels, and return the resulting thumbnail.
 The request body must contain an **imageUrl** which represents a public image url.
@@ -66,9 +120,34 @@ The request body must contain an **imageUrl** which represents a public image ur
 - png
 - gif
 - svg
-  To create a thumb send a **POST** request to `http://localhost:3000/api/create-thumbnail`.
 
-**NB:** The image thumbnail generation route is a private route and requires a token to be present in the authorization header or query
+* **URL**
+
+  /api/create-thumbnail
+
+* **Method**
+
+  `POST`
+
+* **Data Params**
+
+  **Required:**
+
+  `imageUrl=[String]`
+
+* **Success Response**
+
+  - **Code:** 200
+
+* **Error Response**
+
+  - **Code:** 400 <br/>
+    **Content:** `message: 'Bad Request', error: { name: error.name, message: error.message } }`
+
+  OR
+
+  - **Code:** 401 <br/>
+    **Content:** `{ message: 'Authentication Failed. Access Denied' }`
 
 ## View Docs
 

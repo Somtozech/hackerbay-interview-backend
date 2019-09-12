@@ -6,7 +6,9 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "node server.js",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"test": "mocha ./src/tests/**",
+		"coverage": "nyc --reporter=lcov --reporter=html  npm test"
 	},
 	"dependencies": {
 		"@hapi/joi": "^15.1.1",
@@ -24,6 +26,9 @@
 	},
 	"devDependencies": {
 		"chai": "^4.2.0",
-		"eslint": "^6.3.0"
+		"eslint": "^6.3.0",
+		"mocha": "^6.2.0",
+		"nyc": "^14.1.1",
+		"supertest": "^4.0.2"
 	}
 }
